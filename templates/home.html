@@ -20,11 +20,20 @@
         }
         .container {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: flex-start;
             height: 90%; /* Adjusts to fill most of the screen height */
             margin: 0;
             padding: 5px;
+        }
+        .list-section {
+            width: 20%;
+            margin-right: 10px; /* Spacing between sections */
+            border: 2px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            height: 100%; /* Takes the full height of the container */
+            overflow-y: auto; /* Scroll if content overflows */
         }
         .recipe-section {
             width: 60%;
@@ -73,6 +82,14 @@
             align-items: center;
             font-size: 14px;
         }
+        textarea {
+            width: 100%;
+            padding: 5px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            font-size: 14px;
+            resize: none;
+        }
     </style>
 </head>
 <body>
@@ -80,24 +97,27 @@
     <div class="header">Welcome to RecipIT</div>
 
     <div class="container">
+        <!-- List Section -->
+        <div class="list-section">
+            <h2>List</h2>
+            <form method="POST">
+                <label for="list_input">Enter Items</label>
+                <textarea id="list_input" name="list_text" rows="5" cols="30">
+This is the first paragraph. It provides an introduction to the list input and explains its purpose. This paragraph is intentionally long to make sure the content overflows the visible area of the text box. You might also include additional instructions or explanations here for context. The goal is to ensure that there is enough content to require scrolling.
+
+This is the second paragraph. It delves deeper into the context, providing additional information and details for the user. Here, you might add examples or elaborate on specific points introduced in the first paragraph. This section adds value by explaining the "why" behind the input process, making the content more engaging. Again, this paragraph is long enough to require scrolling.
+
+This is the third paragraph. It concludes the text, summarizing the key points and providing a final thought. This section wraps up the message and prepares the user to proceed. You can also use this space to add a call-to-action or some motivational wording. The length of this paragraph ensures that the scrollbar functionality is demonstrated effectively.
+                </textarea>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
         <!-- Recipe Section -->
         <div class="recipe-section">
             <div class="recipe-title">Recipe</div>
             <div class="recipe-content" id="recipe">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in est euismod, tincidunt nunc in, ornare libero. Fusce ac malesuada risus. Proin at malesuada lectus. Integer a lacinia justo. Nam sit amet finibus lectus, sit amet feugiat libero. Ut accumsan auctor dui, id tristique justo scelerisque et. Aliquam erat volutpat. Vivamus sodales lectus ut nulla efficitur, quis rutrum mauris ultrices. Integer dignissim metus et sapien viverra, in pharetra sem tincidunt. Nullam ut dapibus leo. Sed sit amet libero vitae mauris fermentum viverra ac quis elit. Mauris dictum sodales libero, id convallis enim fermentum eget. Proin fermentum nisi ac sapien molestie, id cursus magna tincidunt. Donec eu pharetra ex, sed rhoncus velit.
-
-                Praesent fringilla placerat lacus, a aliquet odio euismod vel. Vivamus in finibus quam. Maecenas sagittis, elit vel hendrerit aliquam, nisl nulla faucibus est, at convallis urna sapien sit amet urna. Proin et ligula sit amet sapien tristique dictum. Vivamus suscipit lorem vel facilisis faucibus. Mauris faucibus felis nec felis interdum vehicula. Quisque nec urna in sapien volutpat vehicula nec eget eros. Morbi tempus nulla in dui dictum vehicula.
-
-                Integer vel mi eget justo pretium vehicula vel nec neque. Integer vel volutpat est, sit amet ultricies justo. Proin ac augue non magna fermentum blandit sit amet sit amet turpis. Vestibulum vehicula enim sem, id elementum mi ultrices sed. Aliquam erat volutpat. Nulla facilisi. Donec vel orci non erat malesuada facilisis. Curabitur nec sapien a eros pellentesque feugiat. Suspendisse potenti. Nullam fermentum pretium venenatis. Fusce egestas non eros nec tincidunt.
-
-                Curabitur nec erat et elit tristique tincidunt sit amet vel purus. Donec aliquet vehicula justo nec elementum. Integer eleifend tristique feugiat. Pellentesque et malesuada enim. In pharetra gravida augue quis pretium. Cras non ultrices quam, vitae volutpat eros. Nam suscipit, mauris nec cursus scelerisque, neque augue sodales metus, sit amet dapibus elit ipsum non nulla. Fusce in gravida metus. Duis vel felis enim.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in est euismod, tincidunt nunc in, ornare libero. Fusce ac malesuada risus. Proin at malesuada lectus. Integer a lacinia justo. Nam sit amet finibus lectus, sit amet feugiat libero. Ut accumsan auctor dui, id tristique justo scelerisque et. Aliquam erat volutpat. Vivamus sodales lectus ut nulla efficitur, quis rutrum mauris ultrices. Integer dignissim metus et sapien viverra, in pharetra sem tincidunt. Nullam ut dapibus leo. Sed sit amet libero vitae mauris fermentum viverra ac quis elit. Mauris dictum sodales libero, id convallis enim fermentum eget. Proin fermentum nisi ac sapien molestie, id cursus magna tincidunt. Donec eu pharetra ex, sed rhoncus velit.
-
-                Praesent fringilla placerat lacus, a aliquet odio euismod vel. Vivamus in finibus quam. Maecenas sagittis, elit vel hendrerit aliquam, nisl nulla faucibus est, at convallis urna sapien sit amet urna. Proin et ligula sit amet sapien tristique dictum. Vivamus suscipit lorem vel facilisis faucibus. Mauris faucibus felis nec felis interdum vehicula. Quisque nec urna in sapien volutpat vehicula nec eget eros. Morbi tempus nulla in dui dictum vehicula.
-
-                Integer vel mi eget justo pretium vehicula vel nec neque. Integer vel volutpat est, sit amet ultricies justo. Proin ac augue non magna fermentum blandit sit amet sit amet turpis. Vestibulum vehicula enim sem, id elementum mi ultrices sed. Aliquam erat volutpat. Nulla facilisi. Donec vel orci non erat malesuada facilisis. Curabitur nec sapien a eros pellentesque feugiat. Suspendisse potenti. Nullam fermentum pretium venenatis. Fusce egestas non eros nec tincidunt.
-
-                Curabitur nec erat et elit tristique tincidunt sit amet vel purus. Donec aliquet vehicula justo nec elementum. Integer eleifend tristique feugiat. Pellentesque et malesuada enim. In pharetra gravida augue quis pretium. Cras non ultrices quam, vitae volutpat eros. Nam suscipit, mauris nec cursus scelerisque, neque augue sodales metus, sit amet dapibus elit ipsum non nulla. Fusce in gravida metus. Duis vel felis enim.
             </div>
             <div class="arrow-buttons">
                 <button class="arrow-button">&larr;</button>
