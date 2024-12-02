@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Page</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevents the whole page from scrolling */
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-start;
+            height: 90%; /* Adjusts to fill most of the screen height */
+            margin: 0;
+            padding: 5px;
+        }
+        .recipe-section {
+            width: 60%;
+            border: 2px solid #ccc;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Takes the full available height of the container */
+        }
+        .recipe-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .recipe-content {
+            flex-grow: 1;
+            border: 1px dashed #aaa;
+            padding: 10px;
+            overflow-y: auto; /* Allows vertical scrolling inside the field */
+            height: calc(100% - 50px); /* Fills most of the recipe-section height */
+        }
+        .arrow-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 5px;
+            margin-left: 10px;
+        }
+        button {
+            padding: 5px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .arrow-button {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header -->
+    <div class="header">Welcome to RecipIT</div>
+
+    <div class="container">
+        <!-- Recipe Section -->
+        <div class="recipe-section">
+            <div class="recipe-title">Recipe</div>
+            <div class="recipe-content" id="recipe">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in est euismod, tincidunt nunc in, ornare libero. Fusce ac malesuada risus. Proin at malesuada lectus. Integer a lacinia justo. Nam sit amet finibus lectus, sit amet feugiat libero. Ut accumsan auctor dui, id tristique justo scelerisque et. Aliquam erat volutpat. Vivamus sodales lectus ut nulla efficitur, quis rutrum mauris ultrices. Integer dignissim metus et sapien viverra, in pharetra sem tincidunt. Nullam ut dapibus leo. Sed sit amet libero vitae mauris fermentum viverra ac quis elit. Mauris dictum sodales libero, id convallis enim fermentum eget. Proin fermentum nisi ac sapien molestie, id cursus magna tincidunt. Donec eu pharetra ex, sed rhoncus velit.
+
+                Praesent fringilla placerat lacus, a aliquet odio euismod vel. Vivamus in finibus quam. Maecenas sagittis, elit vel hendrerit aliquam, nisl nulla faucibus est, at convallis urna sapien sit amet urna. Proin et ligula sit amet sapien tristique dictum. Vivamus suscipit lorem vel facilisis faucibus. Mauris faucibus felis nec felis interdum vehicula. Quisque nec urna in sapien volutpat vehicula nec eget eros. Morbi tempus nulla in dui dictum vehicula.
+
+                Integer vel mi eget justo pretium vehicula vel nec neque. Integer vel volutpat est, sit amet ultricies justo. Proin ac augue non magna fermentum blandit sit amet sit amet turpis. Vestibulum vehicula enim sem, id elementum mi ultrices sed. Aliquam erat volutpat. Nulla facilisi. Donec vel orci non erat malesuada facilisis. Curabitur nec sapien a eros pellentesque feugiat. Suspendisse potenti. Nullam fermentum pretium venenatis. Fusce egestas non eros nec tincidunt.
+
+                Curabitur nec erat et elit tristique tincidunt sit amet vel purus. Donec aliquet vehicula justo nec elementum. Integer eleifend tristique feugiat. Pellentesque et malesuada enim. In pharetra gravida augue quis pretium. Cras non ultrices quam, vitae volutpat eros. Nam suscipit, mauris nec cursus scelerisque, neque augue sodales metus, sit amet dapibus elit ipsum non nulla. Fusce in gravida metus. Duis vel felis enim.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in est euismod, tincidunt nunc in, ornare libero. Fusce ac malesuada risus. Proin at malesuada lectus. Integer a lacinia justo. Nam sit amet finibus lectus, sit amet feugiat libero. Ut accumsan auctor dui, id tristique justo scelerisque et. Aliquam erat volutpat. Vivamus sodales lectus ut nulla efficitur, quis rutrum mauris ultrices. Integer dignissim metus et sapien viverra, in pharetra sem tincidunt. Nullam ut dapibus leo. Sed sit amet libero vitae mauris fermentum viverra ac quis elit. Mauris dictum sodales libero, id convallis enim fermentum eget. Proin fermentum nisi ac sapien molestie, id cursus magna tincidunt. Donec eu pharetra ex, sed rhoncus velit.
+
+                Praesent fringilla placerat lacus, a aliquet odio euismod vel. Vivamus in finibus quam. Maecenas sagittis, elit vel hendrerit aliquam, nisl nulla faucibus est, at convallis urna sapien sit amet urna. Proin et ligula sit amet sapien tristique dictum. Vivamus suscipit lorem vel facilisis faucibus. Mauris faucibus felis nec felis interdum vehicula. Quisque nec urna in sapien volutpat vehicula nec eget eros. Morbi tempus nulla in dui dictum vehicula.
+
+                Integer vel mi eget justo pretium vehicula vel nec neque. Integer vel volutpat est, sit amet ultricies justo. Proin ac augue non magna fermentum blandit sit amet sit amet turpis. Vestibulum vehicula enim sem, id elementum mi ultrices sed. Aliquam erat volutpat. Nulla facilisi. Donec vel orci non erat malesuada facilisis. Curabitur nec sapien a eros pellentesque feugiat. Suspendisse potenti. Nullam fermentum pretium venenatis. Fusce egestas non eros nec tincidunt.
+
+                Curabitur nec erat et elit tristique tincidunt sit amet vel purus. Donec aliquet vehicula justo nec elementum. Integer eleifend tristique feugiat. Pellentesque et malesuada enim. In pharetra gravida augue quis pretium. Cras non ultrices quam, vitae volutpat eros. Nam suscipit, mauris nec cursus scelerisque, neque augue sodales metus, sit amet dapibus elit ipsum non nulla. Fusce in gravida metus. Duis vel felis enim.
+            </div>
+            <div class="arrow-buttons">
+                <button class="arrow-button">&larr;</button>
+                <button class="arrow-button">&rarr;</button>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <button>Save</button>
+            <button>Open Cookbook</button>
+        </div>
+    </div>
+</body>
+</html>
