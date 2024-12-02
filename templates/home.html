@@ -27,13 +27,33 @@
             padding: 5px;
         }
         .list-section {
-            width: 20%;
-            margin-right: 10px; /* Spacing between sections */
+            width: 30%;
             border: 2px solid #ccc;
             padding: 10px;
-            border-radius: 5px;
-            height: 100%; /* Takes the full height of the container */
-            overflow-y: auto; /* Scroll if content overflows */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Takes the full available height of the container */
+        }
+        .list-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .list-content {
+            flex-grow: 1;
+            border: 1px dashed #aaa;
+            padding: 10px;
+            overflow-y: auto; /* Allows vertical scrolling inside the field */
+            height: calc(100% - 50px); /* Fills most of the list-section height */
+        }
+        .submit-button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            align-self: center; /* Centers the button horizontally */
         }
         .recipe-section {
             width: 60%;
@@ -65,9 +85,20 @@
         .action-buttons {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
             gap: 5px;
             margin-left: 10px;
+            height: 100%; /* Aligns buttons at the top and bottom */
+        }
+        .action-buttons .top-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .action-buttons .bottom-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
         button {
             padding: 5px;
@@ -82,14 +113,6 @@
             align-items: center;
             font-size: 14px;
         }
-        textarea {
-            width: 100%;
-            padding: 5px;
-            margin: 10px 0;
-            box-sizing: border-box;
-            font-size: 14px;
-            resize: none;
-        }
     </style>
 </head>
 <body>
@@ -99,18 +122,35 @@
     <div class="container">
         <!-- List Section -->
         <div class="list-section">
-            <h2>List</h2>
-            <form method="POST">
-                <label for="list_input">Enter Items</label>
-                <textarea id="list_input" name="list_text" rows="5" cols="30">
-This is the first paragraph. It provides an introduction to the list input and explains its purpose. This paragraph is intentionally long to make sure the content overflows the visible area of the text box. You might also include additional instructions or explanations here for context. The goal is to ensure that there is enough content to require scrolling.
-
-This is the second paragraph. It delves deeper into the context, providing additional information and details for the user. Here, you might add examples or elaborate on specific points introduced in the first paragraph. This section adds value by explaining the "why" behind the input process, making the content more engaging. Again, this paragraph is long enough to require scrolling.
-
-This is the third paragraph. It concludes the text, summarizing the key points and providing a final thought. This section wraps up the message and prepares the user to proceed. You can also use this space to add a call-to-action or some motivational wording. The length of this paragraph ensures that the scrollbar functionality is demonstrated effectively.
-                </textarea>
-                <button type="submit">Submit</button>
-            </form>
+            <div class="list-title">List</div>
+            <div class="list-content" id="list">
+                - Ingredient 1<br>
+                - Ingredient 2<br>
+                - Ingredient 3<br>
+                - Ingredient 4<br>
+                - Ingredient 5<br>
+                - Ingredient 6<br>
+                - Ingredient 7<br>
+                - Ingredient 8<br>
+                - Ingredient 9<br>
+                - Ingredient 10<br>
+                - Ingredient 11<br>
+                - Ingredient 12<br>
+                - Ingredient 13<br>
+                - Ingredient 14<br>
+                - Ingredient 15<br>
+                - Ingredient 16<br>
+                - Ingredient 17<br>
+                - Ingredient 18<br>
+                - Ingredient 19<br>
+                - Ingredient 20<br>
+                - Ingredient 21<br>
+                - Ingredient 22<br>
+                - Ingredient 23<br>
+                - Ingredient 24<br>
+                - Ingredient 25<br>
+            </div>
+            <button class="submit-button">Submit</button>
         </div>
 
         <!-- Recipe Section -->
@@ -127,8 +167,14 @@ This is the third paragraph. It concludes the text, summarizing the key points a
 
         <!-- Action Buttons -->
         <div class="action-buttons">
-            <button>Save</button>
-            <button>Open Cookbook</button>
+            <div class="top-buttons">
+                <button>Save</button>
+                <button>Open Cookbook</button>
+            </div>
+            <div class="bottom-buttons">
+                <button>About</button>
+                <button>Contact</button>
+            </div>
         </div>
     </div>
 </body>
