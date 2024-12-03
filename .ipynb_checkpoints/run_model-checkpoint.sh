@@ -1,0 +1,1 @@
+docker run --name llama-server -p 11434:11434 sha256:ad91aa30685f3dc4b6fa7ccfd54c6f33b6d70fdc6f4848ab9bba586e119531d8
