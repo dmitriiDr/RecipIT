@@ -1,0 +1,5 @@
+request
+jsonify
+render_template
+dotenv
+requests
