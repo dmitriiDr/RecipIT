@@ -27,13 +27,35 @@
             padding: 5px;
         }
         .list-section {
-            width: 20%;
-            margin-right: 10px; /* Spacing between sections */
+            width: 30%;
             border: 2px solid #ccc;
             padding: 10px;
-            border-radius: 5px;
-            height: 100%; /* Takes the full height of the container */
-            overflow-y: auto; /* Scroll if content overflows */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%; /* Takes the full available height of the container */
+        }
+        .list-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .list-content {
+            flex-grow: 1;
+            border: 1px dashed #aaa;
+            padding: 10px;
+            overflow-y: auto; /* Allows vertical scrolling inside the field */
+            height: calc(100% - 50px); /* Fills most of the list-section height */
+            font-size: 14px;
+            resize: none; /* Prevents the textarea from being resized */
+        }
+        .submit-button {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            align-self: center; /* Centers the button horizontally */
         }
         .recipe-section {
             width: 60%;
@@ -56,6 +78,7 @@
             padding: 10px;
             overflow-y: auto; /* Allows vertical scrolling inside the field */
             height: calc(100% - 50px); /* Fills most of the recipe-section height */
+            white-space: pre-wrap; /* Preserves whitespace for recipe display */
         }
         .arrow-buttons {
             display: flex;
@@ -65,9 +88,20 @@
         .action-buttons {
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
             gap: 5px;
             margin-left: 10px;
+            height: 100%; /* Aligns buttons at the top and bottom */
+        }
+        .action-buttons .top-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .action-buttons .bottom-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
         button {
             padding: 5px;
@@ -82,15 +116,40 @@
             align-items: center;
             font-size: 14px;
         }
-        textarea {
-            width: 100%;
-            padding: 5px;
-            margin: 10px 0;
-            box-sizing: border-box;
-            font-size: 14px;
-            resize: none;
-        }
     </style>
+    <script>
+        async function submitIngredients() {
+            const listContent = document.getElementById('list').value;
+
+            if (!listContent) {
+                alert("Please enter some ingredients!");
+                return;
+            }
+
+            try {
+                const response = await fetch('/get_recipe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ ingredients: listContent }),
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    alert(`Error: ${error.error}`);
+                    return;
+                }
+
+                const data = await response.json();
+                const recipeContent = document.getElementById('recipe');
+                recipeContent.textContent = data.recipe;
+            } catch (error) {
+                console.error("Error:", error);
+                alert("An error occurred while generating the recipe.");
+            }
+        }
+    </script>
 </head>
 <body>
     <!-- Page Header -->
@@ -99,25 +158,16 @@
     <div class="container">
         <!-- List Section -->
         <div class="list-section">
-            <h2>List</h2>
-            <form method="POST">
-                <label for="list_input">Enter Items</label>
-                <textarea id="list_input" name="list_text" rows="5" cols="30">
-This is the first paragraph. It provides an introduction to the list input and explains its purpose. This paragraph is intentionally long to make sure the content overflows the visible area of the text box. You might also include additional instructions or explanations here for context. The goal is to ensure that there is enough content to require scrolling.
-
-This is the second paragraph. It delves deeper into the context, providing additional information and details for the user. Here, you might add examples or elaborate on specific points introduced in the first paragraph. This section adds value by explaining the "why" behind the input process, making the content more engaging. Again, this paragraph is long enough to require scrolling.
-
-This is the third paragraph. It concludes the text, summarizing the key points and providing a final thought. This section wraps up the message and prepares the user to proceed. You can also use this space to add a call-to-action or some motivational wording. The length of this paragraph ensures that the scrollbar functionality is demonstrated effectively.
-                </textarea>
-                <button type="submit">Submit</button>
-            </form>
+            <div class="list-title">List</div>
+            <textarea class="list-content" id="list" placeholder="Type your ingredients here..."></textarea>
+            <button class="submit-button" onclick="submitIngredients()">Submit</button>
         </div>
 
         <!-- Recipe Section -->
         <div class="recipe-section">
             <div class="recipe-title">Recipe</div>
             <div class="recipe-content" id="recipe">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in est euismod, tincidunt nunc in, ornare libero. Fusce ac malesuada risus. Proin at malesuada lectus. Integer a lacinia justo. Nam sit amet finibus lectus, sit amet feugiat libero. Ut accumsan auctor dui, id tristique justo scelerisque et. Aliquam erat volutpat. Vivamus sodales lectus ut nulla efficitur, quis rutrum mauris ultrices. Integer dignissim metus et sapien viverra, in pharetra sem tincidunt. Nullam ut dapibus leo. Sed sit amet libero vitae mauris fermentum viverra ac quis elit. Mauris dictum sodales libero, id convallis enim fermentum eget. Proin fermentum nisi ac sapien molestie, id cursus magna tincidunt. Donec eu pharetra ex, sed rhoncus velit.
+                <!-- Recipe will be displayed here -->
             </div>
             <div class="arrow-buttons">
                 <button class="arrow-button">&larr;</button>
@@ -127,9 +177,20 @@ This is the third paragraph. It concludes the text, summarizing the key points a
 
         <!-- Action Buttons -->
         <div class="action-buttons">
+<<<<<<< HEAD
             <button>Save</button>
             <button>Open Cookbook</button>
             <button>About</button>
+=======
+            <div class="top-buttons">
+                <button>Save</button>
+                <button onclick="window.location.href='/cookbook'">Open Cookbook</button>
+            </div>
+            <div class="bottom-buttons">
+                <button onclick="window.location.href='/about'">About</button>
+                <button>Contact</button>
+            </div>
+>>>>>>> d60a74de5a732a3489bf2842003142a1ced6c74b
         </div>
     </div>
 </body>
