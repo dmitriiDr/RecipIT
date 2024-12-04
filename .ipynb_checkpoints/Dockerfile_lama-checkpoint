@@ -1,0 +1,8 @@
+FROM alpine/llama3.2
+
+WORKDIR /app
+COPY venv /app/.env
+COPY entrypoint.sh /app/entrypoint.sh
+RUN chmod +x /app/entrypoint.sh
+
+EXPOSE 11434

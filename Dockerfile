@@ -1,14 +1,14 @@
-FROM python:3.8-slim-buster
+FROM python:3.8-slim
 # Set the working directory
 WORKDIR /app
 # Copy requirements and install Python dependencies
 COPY requirements.txt .
-RUN pip install -r requirements.txt --verbose
+RUN pip install --no-cache-dir -r requirements.txt --verbose
 # Copy application code
 COPY . .
 COPY templates /app/templates
 # Copy environment variables
-COPY .venv /app/.env
+COPY venv /app/.env
 
 # Expose port
 EXPOSE 5000

@@ -1,5 +1,2 @@
-request
-jsonify
-render_template
-dotenv
+flask
 requests

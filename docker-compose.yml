@@ -7,14 +7,31 @@ services:
       dockerfile: Dockerfile
     ports:
       - "5000:5000"
-    environment:
-      - LLAMA_API_URL=http://llama_server:11434
+    
+    networks:
+      - app_network
+
     depends_on:
       - llama_server
 
   llama_server:
-    image: alpine/llama3.2
+    build:
+      context: .
+      dockerfile: Dockerfile_lama
     container_name: llama3.2_server
     ports:
       - "11434:11434"
-    command: ["--host", "0.0.0.0", "--port", "11434"]
+    volumes:
+      - .:/app/
+      - ./ollama/ollama:/root/.ollama
+    pull_policy: always
+    tty: true
+    restart: always
+    networks:
+      - app_network
+    entrypoint: /app/entrypoint.sh
+
+
+networks:
+  app_network:
+      driver: bridge

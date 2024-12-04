@@ -1,13 +1,10 @@
 from flask import Flask, request, jsonify, render_template
 import requests
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
 
 app = Flask(__name__)
 
-LLAMA_API_URL = "http://localhost:11434/api/generate"
+LLAMA_API_URL = "http://llama3.2_server:11434/api/generate"
 
 @app.route('/')
 def home():
@@ -30,10 +27,9 @@ def get_recipe():
         return jsonify({"error": "No ingredients provided"}), 400
 
     payload = {
-        "model": "llama-3.2",
-        "prompt": f"Create a recipe using these ingredients: {ingredients}",
-        "temperature": 0.7,
-        "max_tokens": 150
+    "model": "llama3.2",
+    "prompt": f"Create a recipe using these ingredients: {ingredients}",
+    "max_tokens": 150,
     }
 
     try:
